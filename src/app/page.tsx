@@ -11,6 +11,7 @@ export default function Home(): JSX.Element {
   const [bill, setBill] = useState<number | ''>('');
   const [tip, setTip] = useState<number>(0);
   const [people, setPeople] = useState<number | ''>('');
+  const [resetTrigger, setResetTrigger] = useState<number>(0); // 👈 added
 
   const validBill = typeof bill === 'number' && bill > 0;
   const validPeople = typeof people === 'number' && people > 0;
@@ -25,6 +26,7 @@ export default function Home(): JSX.Element {
     setBill('');
     setTip(0);
     setPeople('');
+    setResetTrigger(prev => prev + 1); // 👈 trigger reset for TipSelector
   };
 
   return (
@@ -36,7 +38,7 @@ export default function Home(): JSX.Element {
       <div className="card">
         <div className="input-side">
           <BillInput bill={bill} setBill={setBill} />
-          <TipSelector tip={tip} setTip={setTip} />
+          <TipSelector tip={tip} setTip={setTip} resetTrigger={resetTrigger} /> {/* 👈 pass down */}
           <PeopleInput people={people} setPeople={setPeople} />
         </div>
 
