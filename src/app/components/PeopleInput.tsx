@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 interface PeopleInputProps {
@@ -8,17 +6,20 @@ interface PeopleInputProps {
 }
 
 export default function PeopleInput({ people, setPeople }: PeopleInputProps) {
+  const isError = people === 0 || people === '';
+
   return (
     <div className="input-group">
-      <label htmlFor="people">Number of People</label>
+      <div className="label-row">
+        <label>Number of People</label>
+        {people === 0 && <span className="error-text">Can't be zero</span>}
+      </div>
       <input
-        id="people"
         type="number"
         placeholder="0"
         value={people}
-        onChange={(e) =>
-          setPeople(e.target.value === '' ? '' : parseInt(e.target.value, 10))
-        }
+        onChange={(e) => setPeople(Number(e.target.value))}
+        className={people === 0 ? 'input-error' : ''}
       />
     </div>
   );
