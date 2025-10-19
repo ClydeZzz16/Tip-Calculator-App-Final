@@ -22,15 +22,18 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  padding: 1rem;
 }
 
 .title {
   text-align: center;
   letter-spacing: 0.5rem;
   color: hsl(186, 14%, 43%);
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
-/* === CARD LAYOUT === */
+/* === CARD LAYOUT (DESKTOP DEFAULT) === */
 .card {
   background-color: #fff;
   border-radius: 1.5rem;
@@ -70,7 +73,17 @@ input {
   color: hsl(183, 100%, 15%);
 }
 
+input:focus {
+  outline: 2px solid hsl(172, 67%, 45%);
+}
+
 /* === TIP SELECTOR === */
+.tip-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 .tip-selector label {
   font-weight: bold;
   margin-bottom: 0.25rem;
@@ -91,6 +104,7 @@ input {
   padding: 0.75rem;
   cursor: pointer;
   transition: background-color 0.2s;
+  font-size: 1rem;
 }
 
 .tip-btn:hover,
@@ -104,9 +118,22 @@ input {
   color: hsl(183, 100%, 15%);
   border: none;
   border-radius: 0.5rem;
-  text-align: right;
   font-weight: bold;
   padding: 0.75rem;
+  width: 100%;
+  font-size: 1.1rem;
+
+  /* --- Fix text clipping --- */
+  text-align: center;       /* Center text so it doesn’t clip right edge */
+  overflow: visible;        /* Prevents cutoff of text */
+  white-space: nowrap;      /* Prevents wrapping */
+  box-sizing: border-box;   /* Makes sure padding fits correctly */
+  height: 100%;             /* Matches button height */
+}
+
+.tip-custom::placeholder {
+  color: hsl(186, 14%, 43%);
+  text-align: center; /* Keeps placeholder aligned properly */
 }
 
 /* === RESULT BOX === */
@@ -159,18 +186,14 @@ input {
   padding: 1rem;
   cursor: pointer;
   transition: background-color 0.2s;
+  font-size: 1rem;
+  letter-spacing: 1px;
 }
 
 .reset-btn:hover {
   background-color: hsl(172, 67%, 60%);
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  .card {
-    flex-direction: column;
-  }
-}
 /* === PEOPLE INPUT ERROR === */
 .label-row {
   display: flex;
@@ -188,23 +211,60 @@ input {
   border: 2px solid hsl(0, 68%, 60%);
 }
 
-/* === FIX TIP SELECTOR SPACING === */
-.tip-selector {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem; /* more space between label and buttons */
+/* === RESPONSIVE FIXES === */
+
+/* MOBILE IMPROVEMENTS ONLY */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column; /* stack instead of side-by-side */
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 400px;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    letter-spacing: 0.3rem;
+  }
+
+  .tip-grid {
+    grid-template-columns: repeat(2, 1fr); /* smaller buttons layout */
+  }
+
+  .result-box {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .result-value {
+    font-size: 1.75rem;
+  }
+
+  .reset-btn {
+    margin-top: 1rem;
+    padding: 0.9rem;
+  }
 }
 
-/* === FIX CUSTOM INPUT CUTTING TEXT === */
-.tip-custom {
-  background-color: hsl(189, 41%, 97%);
-  color: hsl(183, 100%, 15%);
-  border: none;
-  border-radius: 0.5rem;
-  text-align: right;
-  font-weight: bold;
-  padding: 0.75rem;
-  width: 100%;
-  font-size: 1.1rem; /* ensure text fits */
-}
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
 
+  .card {
+    width: 100%;
+    border-radius: 1rem;
+  }
+
+  .tip-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .result-box {
+    gap: 1.5rem;
+  }
+
+  .result-value {
+    font-size: 1.5rem;
+  }
+}
