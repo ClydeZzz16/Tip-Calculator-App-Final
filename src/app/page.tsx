@@ -5,7 +5,7 @@ import BillInput from './components/BillInput';
 import TipSelector from './components/TipSelector';
 import PeopleInput from './components/PeopleInput';
 import ResultDisplay from './components/ResultDisplay';
-import './globals.css'; // ✅ Use global CSS instead of CSS module
+import './globals.css';
 
 export default function Home(): JSX.Element {
   const [bill, setBill] = useState<number | ''>('');
@@ -34,7 +34,7 @@ export default function Home(): JSX.Element {
       </h1>
 
       <div className="card">
-        <div className="left">
+        <div className="input-side">
           <BillInput bill={bill} setBill={setBill} />
           <TipSelector tip={tip} setTip={setTip} />
           <PeopleInput people={people} setPeople={setPeople} />

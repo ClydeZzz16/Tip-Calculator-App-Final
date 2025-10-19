@@ -1,10 +1,11 @@
-/* Base */
+/* === RESET === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* === BASE === */
 body {
   font-family: 'Space Mono', monospace;
   background-color: hsl(185, 41%, 84%);
@@ -15,7 +16,7 @@ body {
   min-height: 100vh;
 }
 
-/* Layout */
+/* === MAIN CONTAINER === */
 .container {
   display: flex;
   flex-direction: column;
@@ -29,20 +30,29 @@ body {
   color: hsl(186, 14%, 43%);
 }
 
+/* === CARD LAYOUT === */
 .card {
-  background-color: white;
+  background-color: #fff;
   border-radius: 1.5rem;
   padding: 2rem;
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
   width: 100%;
   max-width: 800px;
-  gap: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
-/* Inputs */
-.input-group,
-.tip-selector {
+/* === INPUT SIDE === */
+.input-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* === INPUT STYLING === */
+.input-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -60,7 +70,12 @@ input {
   color: hsl(183, 100%, 15%);
 }
 
-/* Tip Selector */
+/* === TIP SELECTOR === */
+.tip-selector label {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
 .tip-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -75,16 +90,28 @@ input {
   border-radius: 0.5rem;
   padding: 0.75rem;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.tip-btn.active,
-.tip-btn:hover {
+.tip-btn:hover,
+.tip-btn.active {
   background-color: hsl(172, 67%, 45%);
   color: hsl(183, 100%, 15%);
 }
 
-/* Results */
+.tip-custom {
+  background-color: hsl(189, 41%, 97%);
+  color: hsl(183, 100%, 15%);
+  border: none;
+  border-radius: 0.5rem;
+  text-align: right;
+  font-weight: bold;
+  padding: 0.75rem;
+}
+
+/* === RESULT BOX === */
 .result-box {
+  flex: 1;
   background-color: hsl(183, 100%, 15%);
   color: white;
   border-radius: 1rem;
@@ -92,14 +119,28 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 1;
+}
+
+.result-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .result-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+}
+
+.result-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-text small {
+  color: hsl(186, 14%, 43%);
+  font-size: 0.8rem;
 }
 
 .result-value {
@@ -108,6 +149,7 @@ input {
   font-weight: bold;
 }
 
+/* === RESET BUTTON === */
 .reset-btn {
   background-color: hsl(172, 67%, 45%);
   color: hsl(183, 100%, 15%);
@@ -116,8 +158,53 @@ input {
   border-radius: 0.5rem;
   padding: 1rem;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .reset-btn:hover {
   background-color: hsl(172, 67%, 60%);
 }
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+  }
+}
+/* === PEOPLE INPUT ERROR === */
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-text {
+  color: hsl(0, 68%, 60%);
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.input-error {
+  border: 2px solid hsl(0, 68%, 60%);
+}
+
+/* === FIX TIP SELECTOR SPACING === */
+.tip-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* more space between label and buttons */
+}
+
+/* === FIX CUSTOM INPUT CUTTING TEXT === */
+.tip-custom {
+  background-color: hsl(189, 41%, 97%);
+  color: hsl(183, 100%, 15%);
+  border: none;
+  border-radius: 0.5rem;
+  text-align: right;
+  font-weight: bold;
+  padding: 0.75rem;
+  width: 100%;
+  font-size: 1.1rem; /* ensure text fits */
+}
+

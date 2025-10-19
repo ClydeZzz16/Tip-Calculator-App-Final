@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 interface TipSelectorProps {
@@ -8,26 +6,26 @@ interface TipSelectorProps {
 }
 
 export default function TipSelector({ tip, setTip }: TipSelectorProps) {
-  const tipOptions = [5, 10, 15, 25, 50];
+  const tipValues = [5, 10, 15, 25, 50];
 
   return (
     <div className="tip-selector">
       <label>Select Tip %</label>
       <div className="tip-grid">
-        {tipOptions.map((t) => (
+        {tipValues.map((value) => (
           <button
-            key={t}
-            className={`tip-btn ${tip === t ? 'active' : ''}`}
-            onClick={() => setTip(t)}
+            key={value}
+            className={`tip-btn ${tip === value ? 'active' : ''}`}
+            onClick={() => setTip(value)}
           >
-            {t}%
+            {value}%
           </button>
         ))}
         <input
           type="number"
           placeholder="Custom"
-          value={tip === 0 ? '' : tip}
-          onChange={(e) => setTip(e.target.value === '' ? 0 : parseFloat(e.target.value))}
+          className="tip-custom"
+          onChange={(e) => setTip(Number(e.target.value))}
         />
       </div>
     </div>
