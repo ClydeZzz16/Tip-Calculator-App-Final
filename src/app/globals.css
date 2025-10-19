@@ -118,17 +118,17 @@ input:focus {
   color: hsl(183, 100%, 15%);
   border: none;
   border-radius: 0.5rem;
+  text-align: center; /* Center text to avoid cutoff on right */
   font-weight: bold;
-  padding: 0.75rem;
+  padding: 0.8rem 0.5rem; /* slightly more vertical space */
   width: 100%;
   font-size: 1.1rem;
+  outline: 2px solid transparent;
+  transition: outline 0.2s ease;
+}
 
-  /* --- Fix text clipping --- */
-  text-align: center;       /* Center text so it doesn’t clip right edge */
-  overflow: visible;        /* Prevents cutoff of text */
-  white-space: nowrap;      /* Prevents wrapping */
-  box-sizing: border-box;   /* Makes sure padding fits correctly */
-  height: 100%;             /* Matches button height */
+.tip-custom:focus {
+  outline: 2px solid hsl(172, 67%, 45%);
 }
 
 .tip-custom::placeholder {
