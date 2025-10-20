@@ -2,16 +2,26 @@
 
 import React, { useState, useEffect } from 'react';
 
+// ✅ Ensure the JSX namespace is recognized
+// (especially important for some Next.js TypeScript setups)
+import type { JSX } from 'react';
+
 interface TipSelectorProps {
   tip: number;
   setTip: (value: number) => void;
   resetTrigger?: number;
 }
 
-export default function TipSelector({ tip, setTip, resetTrigger }: TipSelectorProps): JSX.Element {
+export default function TipSelector({
+  tip,
+  setTip,
+  resetTrigger,
+}: TipSelectorProps): JSX.Element {
   const [customTip, setCustomTip] = useState<string>('');
 
-  const handleCustomChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleCustomChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const value = e.target.value;
     setCustomTip(value);
     setTip(value === '' ? 0 : parseFloat(value));
@@ -21,7 +31,7 @@ export default function TipSelector({ tip, setTip, resetTrigger }: TipSelectorPr
   useEffect(() => {
     setCustomTip('');
     setTip(0);
-  }, [resetTrigger]);
+  }, [resetTrigger, setTip]);
 
   return (
     <div className="tip-selector">
@@ -30,6 +40,7 @@ export default function TipSelector({ tip, setTip, resetTrigger }: TipSelectorPr
         {[5, 10, 15, 25, 50].map((value) => (
           <button
             key={value}
+            type="button"
             className={`tip-btn ${tip === value ? 'active' : ''}`}
             onClick={() => setTip(value)}
           >
