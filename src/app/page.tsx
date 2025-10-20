@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { JSX, useState } from 'react';
 import BillInput from './components/BillInput';
 import TipSelector from './components/TipSelector';
 import PeopleInput from './components/PeopleInput';
