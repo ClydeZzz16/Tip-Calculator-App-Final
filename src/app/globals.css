@@ -1,0 +1,296 @@
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === BASE === */
+body {
+  font-family: 'Space Mono', monospace;
+  background-color: hsl(185, 41%, 84%);
+  color: hsl(183, 100%, 15%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* === MAIN CONTAINER === */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.title {
+  text-align: center;
+  letter-spacing: 0.5rem;
+  color: hsl(186, 14%, 43%);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* === CARD LAYOUT (DESKTOP DEFAULT) === */
+.card {
+  background-color: #fff;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* === INPUT SIDE === */
+.input-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* === INPUT STYLING === */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: hsl(189, 41%, 97%);
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: hsl(183, 100%, 15%);
+}
+
+input:focus {
+  outline: 2px solid hsl(172, 67%, 45%);
+}
+
+/* === TIP SELECTOR === */
+.tip-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tip-selector label {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.tip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.tip-btn {
+  background-color: hsl(183, 100%, 15%);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 1rem;
+}
+
+.tip-btn:hover,
+.tip-btn.active {
+  background-color: hsl(172, 67%, 45%);
+  color: hsl(183, 100%, 15%);
+}
+
+.tip-custom {
+  background-color: hsl(189, 41%, 97%);
+  color: hsl(183, 100%, 15%);
+  border: none;
+  border-radius: 0.5rem;
+  text-align: center; /* Center text to avoid cutoff on right */
+  font-weight: bold;
+  padding: 0.8rem 0.5rem; /* slightly more vertical space */
+  width: 100%;
+  font-size: 1.1rem;
+  outline: 2px solid transparent;
+  transition: outline 0.2s ease;
+}
+
+.tip-custom:focus {
+  outline: 2px solid hsl(172, 67%, 45%);
+}
+
+.tip-custom::placeholder {
+  color: hsl(186, 14%, 43%);
+  text-align: center; /* Keeps placeholder aligned properly */
+}
+
+/* === RESULT BOX === */
+.result-box {
+  flex: 1;
+  background-color: hsl(183, 100%, 15%);
+  color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.result-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-text small {
+  color: hsl(186, 14%, 43%);
+  font-size: 0.8rem;
+}
+
+.result-value {
+  color: hsl(172, 67%, 45%);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* === RESET BUTTON === */
+.reset-btn {
+  background-color: hsl(172, 67%, 45%);
+  color: hsl(183, 100%, 15%);
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.reset-btn:hover {
+  background-color: hsl(172, 67%, 60%);
+}
+
+/* === PEOPLE INPUT ERROR === */
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-text {
+  color: hsl(0, 68%, 60%);
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.input-error {
+  border: 2px solid hsl(0, 68%, 60%);
+}
+
+/* === RESPONSIVE FIXES === */
+
+/* MOBILE IMPROVEMENTS ONLY */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column; /* stack instead of side-by-side */
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 400px;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    letter-spacing: 0.3rem;
+  }
+
+  .tip-grid {
+    grid-template-columns: repeat(2, 1fr); /* smaller buttons layout */
+  }
+
+  .result-box {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .result-value {
+    font-size: 1.75rem;
+  }
+
+  .reset-btn {
+    margin-top: 1rem;
+    padding: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .card {
+    width: 100%;
+    border-radius: 1rem;
+  }
+
+  .tip-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .result-box {
+    gap: 1.5rem;
+  }
+
+  .result-value {
+    font-size: 1.5rem;
+  }
+}
+/* === INPUT WITH ICON === */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.5rem; /* extra left padding for icon */
+  border-radius: 0.5rem;
+  border: none;
+  background-color: hsl(189, 41%, 97%);
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: hsl(183, 100%, 15%);
+}
